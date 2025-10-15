@@ -19,11 +19,25 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'Wanderlust Kitchen',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop&auto=format,compress',
+        width: 1200,
+        height: 630,
+        alt: 'Wanderlust Kitchen - Food Travel Blog'
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Wanderlust Kitchen - Food Travel Blog',
     description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=630&fit=crop&auto=format,compress',
+        alt: 'Wanderlust Kitchen - Food Travel Blog'
+      }
+    ]
   }
 }
 
