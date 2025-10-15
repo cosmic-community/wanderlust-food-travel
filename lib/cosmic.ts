@@ -1,4 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk'
+import { Post } from './types'
 
 export const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
@@ -21,10 +22,10 @@ export async function getPosts() {
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    const posts = response.objects;
+    const posts = response.objects as Post[];
     
     // Manual sorting by published_date (newest first)
-    return posts.sort((a, b) => {
+    return posts.sort((a: Post, b: Post) => {
       const dateA = new Date(a.metadata?.published_date || '').getTime();
       const dateB = new Date(b.metadata?.published_date || '').getTime();
       return dateB - dateA;
@@ -65,10 +66,10 @@ export async function getPostsByCategory(categoryId: string) {
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    const posts = response.objects;
+    const posts = response.objects as Post[];
     
     // Manual sorting by published_date (newest first)
-    return posts.sort((a, b) => {
+    return posts.sort((a: Post, b: Post) => {
       const dateA = new Date(a.metadata?.published_date || '').getTime();
       const dateB = new Date(b.metadata?.published_date || '').getTime();
       return dateB - dateA;
@@ -92,10 +93,10 @@ export async function getPostsByAuthor(authorId: string) {
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1);
     
-    const posts = response.objects;
+    const posts = response.objects as Post[];
     
     // Manual sorting by published_date (newest first)
-    return posts.sort((a, b) => {
+    return posts.sort((a: Post, b: Post) => {
       const dateA = new Date(a.metadata?.published_date || '').getTime();
       const dateB = new Date(b.metadata?.published_date || '').getTime();
       return dateB - dateA;
