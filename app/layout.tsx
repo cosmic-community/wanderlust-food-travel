@@ -12,6 +12,18 @@ export const metadata: Metadata = {
   description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍜</text></svg>'
+  },
+  openGraph: {
+    title: 'Wanderlust Kitchen - Food Travel Blog',
+    description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Wanderlust Kitchen',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wanderlust Kitchen - Food Travel Blog',
+    description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
   }
 }
 

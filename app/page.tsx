@@ -8,6 +8,18 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Wanderlust Kitchen - Food Travel Blog',
   description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
+  openGraph: {
+    title: 'Wanderlust Kitchen - Food Travel Blog',
+    description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Wanderlust Kitchen',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Wanderlust Kitchen - Food Travel Blog',
+    description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
+  }
 }
 
 export const revalidate = 60; // Revalidate every 60 seconds

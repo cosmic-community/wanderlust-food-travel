@@ -24,9 +24,35 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
   
+  const featuredImage = post.metadata?.featured_image
+  const imageUrl = featuredImage?.imgix_url 
+    ? `${featuredImage.imgix_url}?w=1200&h=630&fit=crop&auto=format,compress`
+    : undefined
+  
   return {
     title: `${post.title} - Wanderlust Kitchen`,
     description: post.metadata?.excerpt || post.title,
+    openGraph: {
+      title: post.title,
+      description: post.metadata?.excerpt || post.title,
+      type: 'article',
+      publishedTime: post.metadata?.published_date,
+      authors: post.metadata?.author?.title ? [post.metadata.author.title] : undefined,
+      images: imageUrl ? [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        }
+      ] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.metadata?.excerpt || post.title,
+      images: imageUrl ? [imageUrl] : undefined,
+    }
   }
 }
 

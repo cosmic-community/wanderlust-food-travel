@@ -24,9 +24,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
   
+  const profilePhoto = author.metadata?.profile_photo
+  const imageUrl = profilePhoto?.imgix_url 
+    ? `${profilePhoto.imgix_url}?w=1200&h=630&fit=crop&auto=format,compress`
+    : undefined
+  
   return {
     title: `${author.title} - Wanderlust Kitchen`,
     description: author.metadata?.bio || `Read posts by ${author.title} on Wanderlust Kitchen`,
+    openGraph: {
+      title: `${author.title} - Wanderlust Kitchen`,
+      description: author.metadata?.bio || `Read posts by ${author.title} on Wanderlust Kitchen`,
+      type: 'profile',
+      images: imageUrl ? [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: author.title,
+        }
+      ] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${author.title} - Wanderlust Kitchen`,
+      description: author.metadata?.bio || `Read posts by ${author.title} on Wanderlust Kitchen`,
+      images: imageUrl ? [imageUrl] : undefined,
+    }
   }
 }
 
