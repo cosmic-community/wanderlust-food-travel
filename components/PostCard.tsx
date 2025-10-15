@@ -37,33 +37,40 @@ export default function PostCard({ post }: PostCardProps) {
             {post.metadata.excerpt}
           </p>
         )}
-        
-        {author && (
-          <div className="flex items-center gap-3">
-            {author.metadata?.profile_photo && (
+      </Link>
+      
+      {author && (
+        <div className="flex items-center gap-3 mt-4">
+          {author.metadata?.profile_photo && (
+            <Link href={`/authors/${author.slug}`}>
               <img 
                 src={`${author.metadata.profile_photo.imgix_url}?w=80&h=80&fit=crop&auto=format,compress`}
                 alt={author.title}
                 width={40}
                 height={40}
-                className="rounded-full"
+                className="rounded-full hover:ring-2 hover:ring-primary-500 hover:ring-offset-2 transition-all cursor-pointer"
               />
+            </Link>
+          )}
+          <div>
+            <Link 
+              href={`/authors/${author.slug}`}
+              className="font-medium text-gray-900 hover:text-primary-600 transition-colors"
+            >
+              {author.title}
+            </Link>
+            {post.metadata?.published_date && (
+              <p className="text-sm text-gray-500">
+                {new Date(post.metadata.published_date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </p>
             )}
-            <div>
-              <p className="font-medium text-gray-900">{author.title}</p>
-              {post.metadata?.published_date && (
-                <p className="text-sm text-gray-500">
-                  {new Date(post.metadata.published_date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
-              )}
-            </div>
           </div>
-        )}
-      </Link>
+        </div>
+      )}
     </article>
   )
 }
