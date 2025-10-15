@@ -3,6 +3,7 @@ import { getPost, getPosts } from '@/lib/cosmic'
 import { Post } from '@/types'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const posts = await getPosts() as Post[]
@@ -12,13 +13,14 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const post = await getPost(slug) as Post
   
   if (!post) {
     return {
-      title: 'Post Not Found',
+      title: 'Post Not Found - Wanderlust Kitchen',
+      description: 'The requested post could not be found.',
     }
   }
   

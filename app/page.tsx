@@ -3,6 +3,12 @@ import { Post, Category } from '@/types'
 import PostCard from '@/components/PostCard'
 import CategoryNav from '@/components/CategoryNav'
 import Hero from '@/components/Hero'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Wanderlust Kitchen - Food Travel Blog',
+  description: 'Explore culinary adventures from street food to fine dining. Discover authentic cuisines and local food markets around the world.',
+}
 
 export const revalidate = 60; // Revalidate every 60 seconds
 

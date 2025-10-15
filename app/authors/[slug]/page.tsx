@@ -3,6 +3,7 @@ import { getAuthor, getAuthors, getPostsByAuthor } from '@/lib/cosmic'
 import { Author, Post } from '@/types'
 import PostCard from '@/components/PostCard'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const authors = await getAuthors() as Author[]
@@ -12,19 +13,20 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const author = await getAuthor(slug) as Author
   
   if (!author) {
     return {
-      title: 'Author Not Found',
+      title: 'Author Not Found - Wanderlust Kitchen',
+      description: 'The requested author could not be found.',
     }
   }
   
   return {
     title: `${author.title} - Wanderlust Kitchen`,
-    description: author.metadata?.bio || `Posts by ${author.title}`,
+    description: author.metadata?.bio || `Read posts by ${author.title} on Wanderlust Kitchen`,
   }
 }
 

@@ -3,6 +3,7 @@ import { getCategory, getCategories, getPostsByCategory } from '@/lib/cosmic'
 import { Category, Post } from '@/types'
 import PostCard from '@/components/PostCard'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const categories = await getCategories() as Category[]
@@ -12,19 +13,20 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const category = await getCategory(slug) as Category
   
   if (!category) {
     return {
-      title: 'Category Not Found',
+      title: 'Category Not Found - Wanderlust Kitchen',
+      description: 'The requested category could not be found.',
     }
   }
   
   return {
     title: `${category.title} - Wanderlust Kitchen`,
-    description: category.metadata?.description || `Browse ${category.title} posts`,
+    description: category.metadata?.description || `Browse ${category.title} posts on Wanderlust Kitchen`,
   }
 }
 
