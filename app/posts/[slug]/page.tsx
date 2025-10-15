@@ -3,7 +3,6 @@ import { getPost, getPosts } from '@/lib/cosmic'
 import { Post } from '@/types'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
-import Image from 'next/image'
 
 export async function generateStaticParams() {
   const posts = await getPosts() as Post[]
@@ -107,7 +106,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       )}
       
-      <div className="prose prose-lg prose-primary max-w-none">
+      <div className="prose prose-lg max-w-none">
         <ReactMarkdown>{post.metadata?.content || ''}</ReactMarkdown>
       </div>
       
